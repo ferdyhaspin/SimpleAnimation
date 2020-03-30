@@ -14,14 +14,21 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        startAnimation()
+
+        btnStart.setOnClickListener {
+            startAnimation()
+        }
+    }
+
+    private fun startAnimation() {
         val scaleX = PropertyValuesHolder.ofFloat(View.SCALE_X, 0.5f, 1f)
         val scaleY = PropertyValuesHolder.ofFloat(View.SCALE_Y, 0.5f, 1f)
         val alpha = PropertyValuesHolder.ofFloat(View.ALPHA, 0f, 1f)
-        btnStart.setOnClickListener {
-            ObjectAnimator.ofPropertyValuesHolder(ivLogo, scaleX, scaleY, alpha).apply {
-                interpolator = OvershootInterpolator()
-                duration = 1000
-            }.start()
-        }
+
+        ObjectAnimator.ofPropertyValuesHolder(ivLogo, scaleX, scaleY, alpha).apply {
+            interpolator = OvershootInterpolator()
+            duration = 1000
+        }.start()
     }
 }
